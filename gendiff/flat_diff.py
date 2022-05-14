@@ -3,10 +3,9 @@ import os
 
 
 def generate_diff_(file_path1, file_path2):
-    file_path1 = os.path.abspath(file_path1)
-    file_path2 = os.path.abspath(file_path2)
 
-    with open(file_path1) as file1, open(file_path2) as file2:
+    with open(os.path.abspath(file_path1)) as file1,\
+            open(os.path.abspath(file_path2)) as file2:
         data1, data2 = json.load(file1), json.load(file2)
 
         for item in data1:
@@ -17,19 +16,17 @@ def generate_diff_(file_path1, file_path2):
             if isinstance(data2[_item], bool):
                 data2[_item] = json.dumps(data2[_item])
 
-        both_keys = data1.keys() | data2.keys()
-
         result = '{\n'
-        for key in sorted(both_keys):
+        for key in sorted(data1.keys() | data2.keys()):
             if key in data1 and key in data2:
                 if data1[key] == data2[key]:
-                    result += (f'    {key}: {data1[key]}\n')
+                    result += f'    {key}: {data1[key]}\n'
                 else:
-                    result += (f'  - {key}: {data1[key]}\n')
-                    result += (f'  + {key}: {data2[key]}\n')
+                    result += f'  - {key}: {data1[key]}\n'
+                    result += f'  + {key}: {data2[key]}\n'
             elif key in data1 and key not in data2:
-                result += (f'  - {key}: {data1[key]}\n')
+                result += f'  - {key}: {data1[key]}\n'
             elif key in data2 and key not in data1:
-                result += (f'  + {key}: {data2[key]}\n')
+                result += f'  + {key}: {data2[key]}\n'
         result += '}'
         return result
