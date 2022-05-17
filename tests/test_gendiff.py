@@ -1,8 +1,7 @@
 from gendiff import generate_diff
 import json
 import pytest
-import os
-
+from tests.fixtures.expected import expected_for_flat_diff
 
 @pytest.fixture(scope='module')
 def file1_json(tmpdir_factory):
@@ -36,16 +35,7 @@ def file2_json(tmpdir_factory):
 
 
 def test_flatdiff(file1_json, file2_json):
-    start = '{'
-    end = '}'
-    expected = (f'{start}\n  '
-                f'- follow: false\n  '
-                f'  host: hexlet.io\n  '
-                f'- proxy: 123.234.53.22\n  '
-                f'- timeout: 50\n  '
-                f'+ timeout: 20\n  '
-                f'+ verbose: true\n'
-                f'{end}')
+    expected = expected_for_flat_diff()
     assert generate_diff(file1_json, file2_json) == expected
 
 
