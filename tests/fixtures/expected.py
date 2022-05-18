@@ -1,4 +1,4 @@
-def expected_for_flat_diff():
+def expected_for_flat_diff_json():
     start = '{'
     end = '}'
     return (f'{start}\n  '
