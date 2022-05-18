@@ -1,4 +1,3 @@
-import json
 import os
 from gendiff.parser import parser
 
@@ -21,15 +20,7 @@ def generate_diff_(file_path1, file_path2):
     return flat_differ(formated_data[0], formated_data[1])
 
 
-def flat_differ(data1, data2):  # noqa: C901
-
-    for item in data1:
-        if isinstance(data1[item], bool):
-            data1[item] = json.dumps(data1[item])
-
-    for _item in data2:
-        if isinstance(data2[_item], bool):
-            data2[_item] = json.dumps(data2[_item])
+def flat_differ(data1, data2):
 
     result = '{\n'
     for key in sorted(data1.keys() | data2.keys()):
@@ -47,5 +38,5 @@ def flat_differ(data1, data2):  # noqa: C901
     return result
 
 
-# print(generate_diff_('/home/devden/python-project-lvl2/tests/fixtures/file1.yml',
-# '/home/devden/python-project-lvl2/tests/fixtures/file2.yml'))
+# print(generate_diff_('/home/devden/python-project-lvl2/tests/fixtures/file1.json',
+# '/home/devden/python-project-lvl2/tests/fixtures/file2.json'))

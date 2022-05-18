@@ -79,3 +79,7 @@ def test_is_string(file1_json, file2_json):
 def test_flatdiff_yaml(file1_yml, file2_yml):
     expected = expected_for_flat_diff_json()
     assert generate_diff(file1_yml, file2_yml) == expected
+
+
+def test_is_string_yml(file1_yml, file2_yml):
+    assert isinstance(generate_diff(file1_yml, file2_yml), str)
