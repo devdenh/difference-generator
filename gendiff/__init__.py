@@ -1,4 +1,4 @@
-from gendiff.flat_diff import generate_diff_
+from gendiff.generate_diff import generate_diff_
 
 
 def generate_diff(path1, path2):

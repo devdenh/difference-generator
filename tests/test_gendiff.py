@@ -3,6 +3,7 @@ import json
 import yaml
 import pytest
 from tests.fixtures.expected import expected_for_flat_diff_json
+from tests.fixtures.expected import expected_for_nested_diff_json
 
 
 @pytest.fixture(scope='module')
@@ -83,3 +84,12 @@ def test_flatdiff_yaml(file1_yml, file2_yml):
 
 def test_is_string_yml(file1_yml, file2_yml):
     assert isinstance(generate_diff(file1_yml, file2_yml), str)
+
+
+nested = expected_for_nested_diff_json()
+def test_nested_json():
+    assert [generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json')] == nested
+
+
+def test_nested_yml():
+    assert [generate_diff('tests/fixtures/nested_file1.yml', 'tests/fixtures/nested_file2.yml')] == nested
