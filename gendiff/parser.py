@@ -27,7 +27,3 @@ def recursive_parser(data):
         elif isinstance(data[item], dict):
             recursive_parser(data[item])
     return data
-
-
-# data1 = (parser(('/home/devden/python-project-lvl2/tests/fixtures/nested_file1.yml',
-# '/home/devden/python-project-lvl2/tests/fixtures/nested_file2.yml')))
