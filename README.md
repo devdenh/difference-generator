@@ -9,3 +9,6 @@ json flat diff:
 
 yml flat diff:
 [![asciicast](https://asciinema.org/a/JcBK91yTT0tmHpOs1eyDBS23t.svg)](https://asciinema.org/a/JcBK91yTT0tmHpOs1eyDBS23t)
+
+json nested diff:
+[![asciicast](https://asciinema.org/a/zH36bzgXOC8jrI5jKzSeWrXDe.svg)](https://asciinema.org/a/zH36bzgXOC8jrI5jKzSeWrXDe)
