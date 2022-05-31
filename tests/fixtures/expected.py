@@ -13,6 +13,7 @@ def get_fixture_path(file_name):
 
 
 nested_data = read(get_fixture_path('nested.txt')).rstrip().split('\n\n\n')
+plain_data = read(get_fixture_path('plane_style.txt')).rstrip().split('\n\n\n')
 
 
 def expected_for_flat_diff_json():

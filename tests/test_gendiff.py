@@ -5,6 +5,7 @@ import pytest
 from tests.fixtures.expected import expected_for_flat_diff_json
 from tests.fixtures.expected import expected_for_nested_diff_json
 from tests.fixtures.expected import get_fixture_path
+from tests.fixtures.expected import plain_data
 
 
 @pytest.fixture(scope='module')
@@ -94,3 +95,10 @@ def test_nested_json():
 
 def test_nested_yml():
     assert [generate_diff(get_fixture_path('nested_file1.yml'), get_fixture_path('nested_file2.yml'))] == nested
+
+
+from gendiff.plain_formatter import plain_formatter
+from debugging import data_formater
+def test_plain_formatter():
+    expected = plain_data
+    assert [plain_formatter(data_formater)] == expected

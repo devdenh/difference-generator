@@ -7,5 +7,5 @@ parser = argparse.ArgumentParser(
 parser.add_argument('first_file', help=argparse.SUPPRESS)
 parser.add_argument('second_file', help=argparse.SUPPRESS)
 parser.add_argument('-V', '--version', help='output the version number', metavar="")
-parser.add_argument('-f', '--format [type]', help='output format (default: "stylish")', metavar="")
+parser.add_argument('-f', '--format', help='output format (default: "stylish")', metavar="",)
 args = parser.parse_args()
