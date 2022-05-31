@@ -102,4 +102,4 @@ def test_nested_yml():
 def test_plain_formatter():
     expected = plain_data
     assert [generate_diff(get_fixture_path('nested_file1.json'),
-                          get_fixture_path('nested_file2.json'), 'plain')] == expected
+                          get_fixture_path('nested_file2.yml'), 'plain')] == expected
