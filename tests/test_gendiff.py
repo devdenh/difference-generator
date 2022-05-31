@@ -72,33 +72,34 @@ def file2_yml(tmpdir_factory):
 
 def test_flatdiff_json(file1_json, file2_json):
     expected = expected_for_flat_diff_json()
-    assert generate_diff(file1_json, file2_json) == expected
+    assert generate_diff(file1_json, file2_json, None) == expected
 
 
 def test_is_string(file1_json, file2_json):
-    assert isinstance(generate_diff(file1_json, file2_json), str)
+    assert isinstance(generate_diff(file1_json, file2_json, None), str)
 
 
 def test_flatdiff_yaml(file1_yml, file2_yml):
     expected = expected_for_flat_diff_json()
-    assert generate_diff(file1_yml, file2_yml) == expected
+    assert generate_diff(file1_yml, file2_yml, None) == expected
 
 
 def test_is_string_yml(file1_yml, file2_yml):
-    assert isinstance(generate_diff(file1_yml, file2_yml), str)
+    assert isinstance(generate_diff(file1_yml, file2_yml, None), str)
 
 
 nested = expected_for_nested_diff_json()
 def test_nested_json():
-    assert [generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'))] == nested
+    assert [generate_diff(get_fixture_path('nested_file1.json'),
+                          get_fixture_path('nested_file2.json'), None)] == nested
 
 
 def test_nested_yml():
-    assert [generate_diff(get_fixture_path('nested_file1.yml'), get_fixture_path('nested_file2.yml'))] == nested
+    assert [generate_diff(get_fixture_path('nested_file1.yml'),
+                          get_fixture_path('nested_file2.yml'), None)] == nested
 
 
-from gendiff.plain_formatter import plain_formatter
-from debugging import data_formater
 def test_plain_formatter():
     expected = plain_data
-    assert [plain_formatter(data_formater)] == expected
+    assert [generate_diff(get_fixture_path('nested_file1.json'),
+                          get_fixture_path('nested_file2.json'), 'plain')] == expected
