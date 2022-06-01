@@ -18,3 +18,6 @@ yml nested diff:
 
 plain diff:
 [![asciicast](https://asciinema.org/a/wQ94d7BCot1wSzqBQzYHJCSpC.svg)](https://asciinema.org/a/wQ94d7BCot1wSzqBQzYHJCSpC)
+
+json format diff:
+[![asciicast](https://asciinema.org/a/bwM9pzMOFfjcJMcTr2dQ6UKbd.svg)](https://asciinema.org/a/bwM9pzMOFfjcJMcTr2dQ6UKbd)
