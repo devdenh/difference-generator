@@ -89,6 +89,8 @@ def test_is_string_yml(file1_yml, file2_yml):
 
 
 nested = expected_for_nested_diff_json()
+
+
 def test_nested_json():
     assert [generate_diff(get_fixture_path('nested_file1.json'),
                           get_fixture_path('nested_file2.json'), None)] == nested
@@ -107,4 +109,4 @@ def test_plain_formatter():
 
 def test_is_json():
     assert json.loads(generate_diff(get_fixture_path('nested_file1.json'),
-                          get_fixture_path('nested_file2.yml'), 'json'))
+                      get_fixture_path('nested_file2.yml'), 'json'))
