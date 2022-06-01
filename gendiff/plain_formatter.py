@@ -1,11 +1,13 @@
 
 
-def is_bool(string):
+def is_bool(value):
     bool_list = ['false', 'null', 'true']
     for item in bool_list:
-        if string == item:
-            return string
-    return f"'{string}'"
+        if value == item:
+            return value
+    if isinstance(value, int):
+        return value
+    return f"'{value}'"
 
 
 def plain_formatter(value):
