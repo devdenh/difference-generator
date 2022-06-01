@@ -1,7 +1,7 @@
 
 
 def is_bool(value):
-    bool_list = ['false', 'null', 'true']
+    bool_list = ['false', 'null', 'true', '0']
     for item in bool_list:
         if value == item:
             return value
