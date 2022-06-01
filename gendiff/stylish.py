@@ -19,7 +19,7 @@ def format_dict(data, start_depth=1, spaces_count=4):
     return walk(data, 0)
 
 
-def stylish(value, replacer=' ', spaces_count=4):
+def make_stylish(value, replacer=' ', spaces_count=4):
 
     def iter_(current_value, depth):
 
