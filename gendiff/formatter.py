@@ -7,7 +7,7 @@ def format(format_name, tree):
     if format_name == 'stylish':
         result = make_stylish(tree)
     elif format_name == 'plain':
-        result = plain_formatter(tree)
+        result = plain_formatter(tree, [])
     elif format_name == 'json':
         result = make_json(tree)
     else:
