@@ -1,8 +1,9 @@
 from gendiff import generate_diff
-from gendiff.cli import args
+from gendiff.cli import parse_args
 
 
 def main():
+    args = parse_args()
     path1 = args.first_file
     path2 = args.second_file
     format = args.format

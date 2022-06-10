@@ -1,5 +1,3 @@
-from gendiff.diff_generator import generate_diff_
+from gendiff.diff_generator import generate_diff
 
-
-def generate_diff(path1, path2, format_name=None):
-    return generate_diff_(path1, path2, format_name)
+__all__ = ['generate_diff', ]
