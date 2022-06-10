@@ -1,6 +1,5 @@
-name: make_check
-on:
-  - push
+name: Python CI
+on: [push, workflow_dispatch]
 jobs:
   my-job:
     runs-on: ubuntu-latest
