@@ -33,16 +33,20 @@ def make_stylish(value, replacer=' ', spaces_count=4):
         for item in current_value:
             if item.get('type') == 'nested':
                 lines.append(f'{di}{item.get("key")}: '
-                             f'{iter_(item.get("children"), dis)}')
+                             f'{iter_(item.get("children"), dis)}'
+                             f''.rstrip())
             elif item.get('type') == 'changed':
                 lines.append(f'{di[:-2] + "- "}{item.get("key")}: '
-                             f'{format_dict(item.get("value1"), sd=dis)}')
+                             f'{format_dict(item.get("value1"), sd=dis)}'
+                             f''.rstrip())
                 lines.append(f'{di[:-2] + "+ "}{item.get("key")}: '
-                             f'{format_dict(item.get("value2"), sd=dis)}')
+                             f'{format_dict(item.get("value2"), sd=dis)}'
+                             f''.rstrip())
             else:
                 lines.append(f'{di[:-2] + sighns.get(item.get("type"))}'
                              f'{item.get("key")}: '
-                             f'{format_dict(item.get("value"), sd=dis)}')
+                             f'{format_dict(item.get("value"), sd=dis)}'
+                             f''.rstrip())
         result = itertools.chain("{", lines, [current_indent + "}"])
         return '\n'.join(result)
     return iter_(value, 0)
