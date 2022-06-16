@@ -29,3 +29,7 @@ def make_tree(data1, data2):
             result.append(node)
 
     return result
+
+
+def build(data1, data2):
+    return {'type': 'root', 'children': make_tree(data1, data2)}
