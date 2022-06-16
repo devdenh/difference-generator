@@ -28,23 +28,28 @@ def test_is_string_yml():
                       get_fixture_path('file2.yml')), str)
 
 
+def test_is_str_nested_yml():
+    assert isinstance(generate_diff(get_fixture_path('nested_file1.yml'),
+                      get_fixture_path('nested_file2.yml')), str)
+
+
 nested = expected_for_nested_diff_json()
 
 
 def test_nested_json():
     assert generate_diff(get_fixture_path('nested_file1.json'),
-                          get_fixture_path('nested_file2.json')) == nested
+                         get_fixture_path('nested_file2.json')) == nested
 
 
 def test_nested_yml():
     assert generate_diff(get_fixture_path('nested_file1.yml'),
-                          get_fixture_path('nested_file2.yml')) == nested
+                         get_fixture_path('nested_file2.yml')) == nested
 
 
 def test_plain_formatter():
     expected = plain_data
     assert generate_diff(get_fixture_path('nested_file1.json'),
-                          get_fixture_path('nested_file2.yml'), 'plain') == expected
+                         get_fixture_path('nested_file2.yml'), 'plain') == expected
 
 
 def test_is_json():
