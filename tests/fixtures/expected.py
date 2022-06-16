@@ -12,8 +12,8 @@ def get_fixture_path(file_name):
     return os.path.join(current_dir, file_name)
 
 
-nested_data = read(get_fixture_path('nested.txt')).rstrip().split('\n\n\n')
-plain_data = read(get_fixture_path('plane_style.txt')).rstrip().split('\n\n\n')
+nested_data = read(get_fixture_path('nested.txt'))
+plain_data = read(get_fixture_path('plane_style.txt'))
 
 
 def expected_for_flat_diff_json():
