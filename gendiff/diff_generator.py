@@ -10,7 +10,7 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
     data1, data2 = get_data(abs_paths[0]), get_data(abs_paths[1])
     formated_data1 = parse(data1, get_format(paths[0]))
     formated_data2 = parse(data2, get_format(paths[1]))
-    tree = build(formated_data1, formated_data2).get('children')
+    tree = build(formated_data1, formated_data2)
     result = format(format_name, tree)
     return result
 
