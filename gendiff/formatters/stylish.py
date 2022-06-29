@@ -1,32 +1,30 @@
 import itertools
-import json
 
 
 def build_indent(depth):
     return ' ' * (depth * 4 - 2)
 
 
-def stringify(data, start_depth=1):
-    def walk(inner_data, depth):
+def stringify(data, depth):
+    if not isinstance(data, dict):
+        if isinstance(data, bool):
+            return 'true' if data else 'false'
 
-        if not isinstance(inner_data, dict):
-            if isinstance(inner_data, bool) or inner_data is None:
-                return json.dumps(inner_data)
-            return str(inner_data)
-        spaces_count = 4
-        deep_indent_size = depth + spaces_count
-        deep_indent = ' ' * deep_indent_size
-        current_indent = ' ' * depth
-        lines = []
-        for key, val in inner_data.items():
-            lines.append(f'{deep_indent}{key}: '
-                         f'{walk(val, deep_indent_size)}')
-        result = itertools.chain("{", lines, [current_indent + "}"])
-        return f'\n{start_depth * spaces_count * " "}'.join(result)
-    return walk(data, 0)
+        if data is None:
+            return 'null'
+
+        return str(data)
+    indent = build_indent(depth)
+    start_ident = build_indent(depth + 1)
+    lines = []
+    for key, val in data.items():
+        lines.append(f'{start_ident + "  "}{key}: '
+                     f'{stringify(val, depth + 1)}')
+    result = itertools.chain("{", lines, [indent + "  " + "}"])
+    return '\n'.join(result)
 
 
-def iter_(node, depth=0):
+def iter_(node, depth=0):  # noqa 901
     children = node.get('children')
     indent = build_indent(depth)
     formatted_value = stringify(node.get('value'), depth)
@@ -42,7 +40,7 @@ def iter_(node, depth=0):
     if node['type'] == 'nested':
         lines = map(lambda child: iter_(child, depth + 1), children)
         result = '\n'.join(lines)
-        return f'{indent + "  "}{node["key"]}: '\
+        return f'{indent + "  "}{node["key"]}: ' \
                f'{{\n{result}\n{indent + "  "}}}'
     if node['type'] == 'changed':
         lines = [
@@ -53,13 +51,28 @@ def iter_(node, depth=0):
         ]
         result = '\n'.join(lines)
         return result
-    else:
+    if node['type'] == 'added':
         lines = [
             f'{indent + sighns.get(node.get("type"))}{node["key"]}: '
             f'{formatted_value}'
         ]
         result = '\n'.join(lines)
         return result
+    if node['type'] == 'removed':
+        lines = [
+            f'{indent + sighns.get(node.get("type"))}{node["key"]}: '
+            f'{formatted_value}'
+        ]
+        result = '\n'.join(lines)
+        return result
+    if node['type'] == 'unchanged':
+        lines = [
+            f'{indent + sighns.get(node.get("type"))}{node["key"]}: '
+            f'{formatted_value}'
+        ]
+        result = '\n'.join(lines)
+        return result
+    raise ValueError("Unknown node type")
 
 
 def make_stylish(tree):
