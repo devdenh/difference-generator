@@ -12,22 +12,8 @@ def get_fixture_path(file_name):
     return os.path.join(current_dir, file_name)
 
 
-nested_data = read(get_fixture_path('nested.txt'))
-plain_data = read(get_fixture_path('plane_style.txt'))
-
-
-def expected_for_flat_diff_json():
-    start = '{'
-    end = '}'
-    end_ = (f'{start}\n  '
-            f'- follow: false\n  '
-            f'  host: hexlet.io\n  '
-            f'- proxy: 123.234.53.22\n  '
-            f'- timeout: 50\n  '
-            f'+ timeout: 20\n  '
-            f'+ verbose: true\n'
-            f'{end}')
-    return end_
+nested_data = read(get_fixture_path('stylish.txt'))
+plain_data = read(get_fixture_path('plain.txt'))
 
 
 def expected_for_nested_diff_json():
