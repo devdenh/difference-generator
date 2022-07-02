@@ -1,8 +1,7 @@
 import os
 from gendiff.tree import build
 from gendiff.formatter import format
-import json
-import yaml
+from gendiff.parser import parse
 
 
 def generate_diff(file_path1, file_path2, format_name='stylish'):
@@ -16,11 +15,7 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
 
 def get_data(file_path, format_name):
     with open(file_path, 'r') as f:
-        if format_name == 'json':
-            return json.load(f)
-        if format_name in {'yml', 'yaml'}:
-            return yaml.load(f, Loader=yaml.BaseLoader)
-        raise ValueError(f'Unknown format: {format_name}')
+        return parse(f, format_name)
 
 
 def get_format(path):

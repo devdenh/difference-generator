@@ -16,7 +16,7 @@ def to_str(value):  # noqa  901
     return f"'{value}'"
 
 
-def plain_formatter(node, ancestry=''):
+def plain_formatter(node, ancestry=''):  # noqa  901
     children = node.get('children')
     property_name = f"{ancestry}{node.get('key')}"
     if node.get('type') == 'root':
@@ -50,6 +50,9 @@ def plain_formatter(node, ancestry=''):
                  f"was updated. From {value1} to {value2}")
         result = "\n".join([lines])
         return result
+    if node['type'] == 'unchanged':
+        return None
+    raise ValueError("Unknown node type")
 
 
 def make_plain(tree):

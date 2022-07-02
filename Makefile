@@ -18,4 +18,7 @@ check: selfcheck test lint
 build: check
 	poetry build
 
+try:
+	python3 -m pip install .
+
 .PHONY: install test lint selfcheck check build
