@@ -1,3 +1,13 @@
+# Difference generator
+
+Difference generator - is a program that compare two json or yaml files and shows the difference in chosen output format
+
+### Setup
+
+```bash
+$ make install
+```
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/devdenh/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/devdenh/python-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/aba99b3fbaf73d8fb128/maintainability)](https://codeclimate.com/github/devdenh/python-project-lvl2/maintainability)
